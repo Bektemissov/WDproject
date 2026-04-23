@@ -1,0 +1,119 @@
+:root {
+  --bg: #f7f0e6;
+  --surface: rgba(255, 255, 255, 0.88);
+  --ink: #102325;
+  --ink-soft: #536369;
+  --teal: #0c4f4a;
+  --gold: #d7a855;
+  --display-font: "Georgia", "Times New Roman", serif;
+  --body-font: "Arial", "Helvetica", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(215, 168, 85, 0.24), transparent 26%),
+    radial-gradient(circle at bottom right, rgba(12, 79, 74, 0.13), transparent 28%),
+    linear-gradient(180deg, #fbf7f0 0%, #f7f0e6 45%, #eef4ef 100%);
+  color: var(--ink);
+  font-family: var(--body-font);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+a.text-link,
+a.back-link,
+.auth-actions a,
+.footer-links a,
+.footer-meta span {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1.5px;
+  display: inline-block;
+  width: fit-content;
+  transition:
+    background-size 0.22s ease,
+    color 0.22s ease,
+    opacity 0.22s ease;
+}
+
+a.text-link:hover,
+a.back-link:hover,
+.auth-actions a:hover,
+.footer-links a:hover,
+.footer-meta span:hover {
+  background-size: 100% 1.5px;
+}
+
+button:not(.ghost-button),
+a.primary-button,
+a.secondary-button,
+a.text-link,
+a.back-link {
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease,
+    opacity 0.18s ease;
+}
+
+button:not(.ghost-button):hover,
+a.primary-button:hover,
+a.secondary-button:hover {
+  box-shadow: 0 14px 28px rgba(16, 35, 37, 0.12);
+  transform: translateY(-2px);
+}
+
+button.primary-button:hover,
+a.primary-button:hover {
+  background: #1a3436;
+}
+
+button.secondary-button:hover,
+a.secondary-button:hover {
+  background: rgba(12, 79, 74, 0.14);
+}
+
+button.danger-button:hover {
+  background: #fecaca;
+  box-shadow: 0 14px 28px rgba(127, 29, 29, 0.12);
+  transform: translateY(-2px);
+}
+
+a.text-link:hover,
+a.back-link:hover {
+  color: var(--gold);
+}
+
+button:not(.ghost-button):active,
+a.primary-button:active,
+a.secondary-button:active {
+  box-shadow: 0 6px 14px rgba(16, 35, 37, 0.1);
+  transform: translateY(1px) scale(0.985);
+}
+
+button.danger-button:active {
+  box-shadow: 0 6px 14px rgba(127, 29, 29, 0.12);
+  transform: translateY(1px) scale(0.985);
+}

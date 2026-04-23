@@ -1,0 +1,33 @@
+<section class="auth-page">
+  <div class="auth-card">
+    <div>
+      <p class="eyebrow">Login</p>
+      <h1>Welcome back to the campus board</h1>
+      <p class="subtitle">Sign in to browse approved announcements, publish your own post, or moderate the queue.</p>
+    </div>
+
+    <div class="demo-box">
+      <p><strong>Demo admin:</strong> admin / admin123</p>
+      <p><strong>Demo user:</strong> student / student123</p>
+    </div>
+
+    <label class="field">
+      <span>Username</span>
+      <input [(ngModel)]="username" name="username" type="text">
+    </label>
+
+    <label class="field">
+      <span>Password</span>
+      <input [(ngModel)]="password" name="password" type="password">
+    </label>
+
+    @if (errorMessage) {
+      <p class="message error">{{ errorMessage }}</p>
+    }
+
+    <div class="auth-actions">
+      <button class="primary-button" type="button" (click)="login()">Login</button>
+      <a routerLink="/register">Register a new account</a>
+    </div>
+  </div>
+</section>

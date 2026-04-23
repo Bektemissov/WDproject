@@ -1,0 +1,156 @@
+.details-page {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 2.5rem 1.5rem 3rem;
+}
+
+.back-link,
+.contact-line {
+  color: var(--ink-soft);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  text-decoration: none;
+}
+
+.details-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1.3fr 0.7fr;
+}
+
+.loading-box {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px dashed rgba(12, 79, 74, 0.22);
+  border-radius: 28px;
+  padding: 1.5rem;
+}
+
+.loading-box h2 {
+  font-family: var(--display-font);
+  margin: 0;
+}
+
+.loading-box p {
+  color: var(--ink-soft);
+  margin: 0.55rem 0 0;
+}
+
+.details-card,
+.contact-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(12, 79, 74, 0.08);
+  border-radius: 30px;
+  box-shadow: 0 24px 45px rgba(15, 40, 37, 0.07);
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.pill-row,
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.pill {
+  align-items: center;
+  background: rgba(12, 79, 74, 0.08);
+  border-radius: 999px;
+  color: var(--teal);
+  display: inline-flex;
+  line-height: 1;
+  padding: 0.35rem 0.75rem;
+  text-transform: capitalize;
+  width: fit-content;
+}
+
+.pill.muted {
+  color: var(--ink-soft);
+}
+
+h1,
+h2 {
+  font-family: var(--display-font);
+  margin: 0;
+}
+
+.description,
+.contact-help,
+.moderator-box p {
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.meta-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+}
+
+.meta-grid div {
+  background: #fcfaf5;
+  border-radius: 20px;
+  padding: 1rem;
+}
+
+.meta-grid dt {
+  color: var(--ink-soft);
+  margin-bottom: 0.35rem;
+}
+
+.meta-grid dd {
+  margin: 0;
+}
+
+.moderator-box {
+  background: rgba(12, 79, 74, 0.08);
+  border-radius: 20px;
+  padding: 1rem;
+}
+
+.eyebrow {
+  color: var(--teal);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.secondary-button,
+.danger-button {
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  padding: 0.85rem 1.2rem;
+}
+
+.secondary-button {
+  background: rgba(12, 79, 74, 0.08);
+  color: var(--ink);
+}
+
+.danger-button {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.message {
+  background: rgba(12, 79, 74, 0.08);
+  border-radius: 16px;
+  margin: 0;
+  padding: 0.9rem 1rem;
+}
+
+@media (max-width: 960px) {
+  .details-grid,
+  .meta-grid {
+    grid-template-columns: 1fr;
+  }
+}

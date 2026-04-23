@@ -1,0 +1,93 @@
+<section class="dashboard-page">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">Profile</p>
+      <h1>Your account and announcement history</h1>
+      <p>Manage contact details and track every announcement from moderation to publication.</p>
+    </div>
+    @if (profile?.role !== 'admin') {
+      <a class="secondary-button" routerLink="/items/new">Create new announcement</a>
+    }
+  </div>
+
+  <div class="dashboard-grid">
+    <section class="panel-card">
+      <h2>Profile information</h2>
+
+      <div class="form-grid">
+        <label class="field">
+          <span>First name</span>
+          <input [(ngModel)]="form.first_name" name="firstName" type="text">
+        </label>
+
+        <label class="field">
+          <span>Last name</span>
+          <input [(ngModel)]="form.last_name" name="lastName" type="text">
+        </label>
+
+        <label class="field">
+          <span>Patronymic</span>
+          <input [(ngModel)]="form.patronymic" name="patronymic" type="text">
+        </label>
+
+        <label class="field">
+          <span>Course</span>
+          <select [(ngModel)]="form.course" name="course">
+            @for (course of ['1', '2', '3', '4', '5', '6']; track course) {
+              <option [value]="course">{{ course }} course</option>
+            }
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Phone number</span>
+          <input [(ngModel)]="form.phone_number" name="phoneNumber" type="text">
+        </label>
+
+        <label class="field">
+          <span>Email</span>
+          <input [(ngModel)]="form.email" name="email" type="email">
+        </label>
+      </div>
+
+      @if (errorMessage) {
+        <p class="message error">{{ errorMessage }}</p>
+      }
+
+      @if (successMessage) {
+        <p class="message success">{{ successMessage }}</p>
+      }
+
+      <button class="primary-button" type="button" (click)="saveProfile()">Save profile</button>
+    </section>
+
+    <section class="panel-card">
+      <h2>My announcements</h2>
+      <p class="section-copy">Each post shows whether it is active, rejected or still under review.</p>
+
+      <div class="status-list">
+        @for (item of myItems; track item.id) {
+          <article class="status-card">
+            <div class="status-top">
+              <div>
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.createdAt | date: 'mediumDate' }} · {{ item.type }} · {{ item.location }}</p>
+              </div>
+              <span class="status-pill" [class.pending]="item.moderationStatus === 'pending'" [class.rejected]="item.moderationStatus === 'rejected'">
+                {{ moderationLabel(item) }}
+              </span>
+            </div>
+
+            <p class="item-description">{{ item.description }}</p>
+
+            @if (item.moderatorComment) {
+              <p class="moderator-note">Moderator note: {{ item.moderatorComment }}</p>
+            }
+
+            <a class="text-link" [routerLink]="['/items', item.id]">Open details</a>
+          </article>
+        }
+      </div>
+    </section>
+  </div>
+</section>

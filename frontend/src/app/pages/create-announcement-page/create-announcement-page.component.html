@@ -1,0 +1,62 @@
+<section class="panel-page">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">Create announcement</p>
+      <h1>Publish a lost or found post</h1>
+      <p>Your announcement will appear on the board only after admin moderation.</p>
+    </div>
+    <a class="secondary-button" routerLink="/profile">Go to profile</a>
+  </div>
+
+  <div class="panel-card">
+    <div class="form-grid">
+      <label class="field">
+        <span>Title</span>
+        <input [(ngModel)]="form.title" name="title" type="text" placeholder="Lost silver ring near library">
+      </label>
+
+      <label class="field">
+        <span>Type</span>
+        <select [(ngModel)]="form.type" name="type">
+          <option value="lost">Lost</option>
+          <option value="found">Found</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Category</span>
+        <select [(ngModel)]="form.category_id" name="categoryId">
+          <option [ngValue]="null">Choose category</option>
+          @for (category of categories; track category.id) {
+            <option [ngValue]="category.id">{{ category.name }}</option>
+          }
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Location</span>
+        <select [(ngModel)]="form.location_id" name="locationId">
+          <option [ngValue]="null">Choose location</option>
+          @for (location of locations; track location.id) {
+            <option [ngValue]="location.id">{{ location.name }}</option>
+          }
+        </select>
+      </label>
+    </div>
+
+    <label class="field">
+      <span>Description</span>
+      <textarea [(ngModel)]="form.description" name="description" placeholder="Describe the item, where it was seen, and any useful details"></textarea>
+    </label>
+
+    @if (errorMessage) {
+      <p class="message error">{{ errorMessage }}</p>
+    }
+
+    @if (successMessage) {
+      <p class="message success">{{ successMessage }}</p>
+    }
+
+    <button class="primary-button" type="button" (click)="submit()">Send for review</button>
+  </div>
+</section>

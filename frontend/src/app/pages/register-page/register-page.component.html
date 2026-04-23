@@ -1,0 +1,68 @@
+<section class="auth-page">
+  <div class="auth-card wide">
+    <div>
+      <p class="eyebrow">Register</p>
+      <h1>Create your KBTU account</h1>
+      <p class="subtitle">Fill in your academic and contact information so it can appear in approved announcement details.</p>
+    </div>
+
+    <div class="form-grid">
+      <label class="field">
+        <span>First name</span>
+        <input [(ngModel)]="form.first_name" name="firstName" type="text">
+      </label>
+
+      <label class="field">
+        <span>Last name</span>
+        <input [(ngModel)]="form.last_name" name="lastName" type="text">
+      </label>
+
+      <label class="field">
+        <span>Patronymic</span>
+        <input [(ngModel)]="form.patronymic" name="patronymic" type="text">
+      </label>
+
+      <label class="field">
+        <span>Course</span>
+        <select [(ngModel)]="form.course" name="course">
+          @for (course of ['1', '2', '3', '4', '5', '6']; track course) {
+            <option [value]="course">{{ course }} course</option>
+          }
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Phone number</span>
+        <input [(ngModel)]="form.phone_number" name="phoneNumber" type="text">
+      </label>
+
+      <label class="field">
+        <span>Email</span>
+        <input [(ngModel)]="form.email" name="email" type="email">
+      </label>
+
+      <label class="field">
+        <span>Username</span>
+        <input [(ngModel)]="form.username" name="username" type="text">
+      </label>
+
+      <label class="field">
+        <span>Password</span>
+        <input [(ngModel)]="form.password" name="password" type="password">
+      </label>
+    </div>
+
+    @if (errorMessage) {
+      <p class="message error">{{ errorMessage }}</p>
+    }
+
+    @if (successMessage) {
+      <p class="message success">{{ successMessage }}</p>
+    }
+
+    <div class="auth-actions">
+      <button class="primary-button" type="button" (click)="register()">Register</button>
+      <a routerLink="/login">Already have an account? Login</a>
+    </div>
+  </div>
+</section>

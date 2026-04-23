@@ -1,0 +1,83 @@
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">KBTU campus board</p>
+    <h1>Lost something on campus? Let the right person find it faster.</h1>
+    <p class="lead">
+      A polished lost-and-found platform for KBTU where students publish announcements, admins moderate them,
+      and contacts stay visible inside each approved post.
+    </p>
+
+    <div class="hero-actions">
+      @if (authService.isLoggedIn()) {
+        <a class="primary-button" routerLink="/items">Browse announcements</a>
+        @if (!authService.isAdmin()) {
+          <a class="secondary-button" routerLink="/items/new">Create announcement</a>
+        }
+      } @else {
+        <a class="primary-button" routerLink="/login">Login</a>
+        <a class="secondary-button" routerLink="/register">Register</a>
+      }
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card hero-card-photo card-large">
+      <div class="hero-card-photo__overlay">
+        <span>Campus community</span>
+        <strong>Students can quickly share lost and found updates in one place</strong>
+      </div>
+    </div>
+    <div class="hero-card">
+      <span>Contacts inside details</span>
+      <strong>Email, phone and course are visible for quick communication</strong>
+    </div>
+    <div class="hero-card accent">
+      <span>Personal dashboard</span>
+      <strong>Users can track whether a post is pending, active or rejected</strong>
+    </div>
+  </div>
+</section>
+
+<section class="feature-grid">
+  <article>
+    <h2>Create</h2>
+    <p>Students publish a lost or found announcement from a dedicated form instead of sending scattered messages.</p>
+  </article>
+  <article>
+    <h2>Moderate</h2>
+    <p>Admins review incoming announcements before publication to keep the board clean and trustworthy.</p>
+  </article>
+  <article>
+    <h2>Connect</h2>
+    <p>Every approved details page includes the author’s contact information, so people can call or write directly.</p>
+  </article>
+</section>
+
+<section class="featured">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Approved announcements</p>
+      <h2>Recent posts on the board</h2>
+    </div>
+    @if (authService.isLoggedIn()) {
+      <a class="secondary-button" routerLink="/items">Open board</a>
+    }
+  </div>
+
+  <div class="featured-grid">
+    @for (item of featuredItems; track item.id) {
+      <article class="featured-card">
+        <div class="pill-row">
+          <span class="pill">{{ item.type }}</span>
+          <span class="pill muted">{{ item.location }}</span>
+        </div>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+        <div class="meta-row">
+          <span>{{ item.category }}</span>
+          <span>{{ item.createdAt | date: 'mediumDate' }}</span>
+        </div>
+      </article>
+    }
+  </div>
+</section>

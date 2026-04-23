@@ -1,0 +1,68 @@
+<section class="board-page">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">Approved board</p>
+      <h1>Campus announcements</h1>
+      <p>Browse approved lost and found posts. Every card leads to a complete details page with contacts.</p>
+    </div>
+
+    @if (!authService.isAdmin()) {
+      <a class="primary-button" routerLink="/items/new">Create announcement</a>
+    } @else {
+      <a class="secondary-button" routerLink="/moderation">Open moderation</a>
+    }
+  </div>
+
+  <div class="filters-card">
+    <label class="field">
+      <span>Type</span>
+      <select [(ngModel)]="selectedType" name="selectedType" (ngModelChange)="applyFilters()">
+        <option value="all">All</option>
+        <option value="lost">Lost</option>
+        <option value="found">Found</option>
+      </select>
+    </label>
+
+    <label class="field">
+      <span>Status</span>
+      <select [(ngModel)]="selectedStatus" name="selectedStatus" (ngModelChange)="applyFilters()">
+        <option value="all">All</option>
+        <option value="open">Open</option>
+        <option value="closed">Closed</option>
+      </select>
+    </label>
+  </div>
+
+  @if (isLoading) {
+    <div class="empty-state">
+      <h2>Loading announcements...</h2>
+      <p>The board is fetching approved posts from the server.</p>
+    </div>
+  } @else if (!filteredItems.length) {
+    <div class="empty-state">
+      <h2>No announcements found.</h2>
+      <p>There are no approved posts matching the current filters yet.</p>
+    </div>
+  } @else {
+    <div class="cards-grid">
+      @for (item of filteredItems; track item.id) {
+        <article class="item-card">
+          <div class="card-pills">
+            <span class="pill">{{ item.type }}</span>
+            <span class="pill muted">{{ item.location }}</span>
+          </div>
+
+          <h2>{{ item.title }}</h2>
+          <p>{{ item.description }}</p>
+
+          <div class="meta-row">
+            <span>{{ item.owner.fullName }}</span>
+            <span>{{ item.createdAt | date: 'mediumDate' }}</span>
+          </div>
+
+          <a class="text-link" [routerLink]="['/items', item.id]">Open details</a>
+        </article>
+      }
+    </div>
+  }
+</section>

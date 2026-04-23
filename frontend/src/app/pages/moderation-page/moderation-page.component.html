@@ -1,0 +1,82 @@
+<section class="moderation-page">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">Admin moderation</p>
+      <h1>Review incoming announcements</h1>
+      <p>Approve or reject pending posts, then manage already published announcements below.</p>
+    </div>
+  </div>
+
+  @if (errorMessage) {
+    <p class="message error">{{ errorMessage }}</p>
+  }
+
+  @if (successMessage) {
+    <p class="message success">{{ successMessage }}</p>
+  }
+
+  <section class="panel-card">
+    <h2>Pending announcements</h2>
+
+    <div class="list-grid">
+      @for (item of pendingItems; track item.id) {
+        <article class="item-card">
+          <div class="card-head">
+            <div>
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.owner.fullName }} · {{ item.owner.course }} course · {{ item.createdAt | date: 'mediumDate' }}</p>
+            </div>
+            <span class="pill pending">pending</span>
+          </div>
+
+          <p>{{ item.description }}</p>
+
+          <div class="details-row">
+            <span>{{ item.type }}</span>
+            <span>{{ item.category }}</span>
+            <span>{{ item.location }}</span>
+          </div>
+
+          <label class="field">
+            <span>Moderator comment</span>
+            <textarea [(ngModel)]="moderatorCommentById[item.id]" [name]="'comment-' + item.id"></textarea>
+          </label>
+
+          <div class="action-row">
+            <button class="primary-button" type="button" (click)="moderate(item, 'approved')">Approve</button>
+            <button class="danger-button" type="button" (click)="moderate(item, 'rejected')">Reject</button>
+            <a class="text-link" [routerLink]="['/items', item.id]">Open details</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="panel-card">
+    <h2>Published announcements</h2>
+
+    <div class="list-grid">
+      @for (item of publishedItems; track item.id) {
+        <article class="item-card">
+          <div class="card-head">
+            <div>
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.owner.fullName }} · {{ item.location }}</p>
+            </div>
+            <span class="pill active">{{ item.status }}</span>
+          </div>
+
+          <p>{{ item.description }}</p>
+
+          <div class="action-row">
+            <button class="secondary-button" type="button" (click)="toggleStatus(item.id)">
+              {{ item.status === 'open' ? 'Close' : 'Reopen' }}
+            </button>
+            <button class="danger-button" type="button" (click)="deleteItem(item.id)">Delete</button>
+            <a class="text-link" [routerLink]="['/items', item.id]">Open details</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+</section>
